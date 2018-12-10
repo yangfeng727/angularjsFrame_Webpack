@@ -32,12 +32,12 @@ module.exports = {
                 use: [ 'style-loader', 'css-loader' ],
                 include:/test/
                 // exclude: /node_modules|dist/
+            },
+            {
+                test: /(\.css|\.less)$/,
+                use:['style-loader', 'css-loader', 'less-loader'],
+                exclude: /node_modules/
             }
-            // {
-            //     test: /(\.css|\.less)$/,
-            //     use:['style-loader', 'css-loader', 'less-loader'],
-            //     exclude: /node_modules/
-            // }
         ]
     }
 }

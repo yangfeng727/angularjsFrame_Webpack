@@ -1,5 +1,5 @@
 import aa from'./a';
 // import './index.less';
-import './index.css';
+import './index.less';
 
 document.getElementById('test').innerText=aa;
