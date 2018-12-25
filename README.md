@@ -1,5 +1,5 @@
 # angularjsFrame_Webpack
-使用webpack打包之前的angularjs框架，主要学习webpack
+使用webpack打包之前的angularjs框架，主要学习webpack,这里webpack的版本为 "webpack": "^4.27.1"
 
 
 # 安装问题-test目录
@@ -29,6 +29,8 @@ npm install webpack-cli -D
 安装：
 
 npm install url-loader --save-dev
+// url-loader ，用limit来区分，小于limt的会将图片打包为base64 
+// file-loader 可以也加载图片，不会打包为base64
 ```
 ## 4.打包图片，合成sprite图（雪碧图）
 [参考教程](https://blog.csdn.net/luchuanqi67/article/details/82502009)
