@@ -1,4 +1,5 @@
 const rules=require("./webpack.rules");
+const plugins=require("./webpack.plugins");
 
 module.exports = {
     mode: 'production',// production | development   两种模式的内置优化
@@ -18,5 +19,6 @@ module.exports = {
     },
     module: {
         rules:rules
-    }
+    },
+    plugins:plugins
 }
