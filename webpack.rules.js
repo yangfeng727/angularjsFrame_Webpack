@@ -38,9 +38,15 @@ module.exports =[
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-            name: 'images/[hash:8].[name].[ext]'
+            name: 'images/[hash:8].[name].[ext]',
+            publicPath:'../' // 图片引用的相对路径会被publicPath替换，这样就不会出现图片路径错误的问题
         },
         exclude: /node_modules/
+    },
+    {
+        test: /\.html$/,
+        // html中的img标签
+        use: ["html-withimg-loader"]
     }
     // {
     //     test: /\.(png|jpg|gif|svg)$/,
