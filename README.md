@@ -1,7 +1,10 @@
 # angularjsFrame_Webpack
-使用webpack打包之前的angularjs框架，主要学习webpack
+使用webpack打包之前的angularjs框架，主要学习webpack,这里webpack的版本为 "webpack": "^4.27.1"
 
-
+# npm --save-dev --save 的区别
+[参考教程](https://blog.csdn.net/juzipchy/article/details/65653683)  
+devDependencies是开发时的依赖。比如 我们安装 js的压缩包gulp-uglify插件  
+dependencies 下的模块，则是我们发布后还需要依赖的模块，譬如像jQuery库或者Angular框架类似的，我们在开发完后后肯定还要依赖它们，否则就运行不了。
 # 安装问题-test目录
 ## 1.打包css，es6语法报错，最后发现是webpack4 Cannot find module '@babel/core'  
 原因"babel-loader": "^8.0.0" 版本问题。  
@@ -29,11 +32,35 @@ npm install webpack-cli -D
 安装：
 
 npm install url-loader --save-dev
+// url-loader ，用limit来区分，小于limt的会将图片打包为base64 
+// file-loader 可以也加载图片，不会打包为base64
+    {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+            name: 'images/[hash:8].[name].[ext]',
+            publicPath:'../' // 图片引用的相对路径会被publicPath替换，这样就不会出现图片路径错误的问题
+        },
+        exclude: /node_modules/
+    }
 ```
-## 4.打包图片，合成sprite图（雪碧图）
+## 4.由于 webpack 对 html 的处理不太好，打包 HTML 文件中的图片资源是相对来说最麻烦的。这里需要引用一个插件—— html-withimg-loder
+```
+ 安装：npm install html-withimg-loader --save-dev
+  ...
+  module: {
+        rules:[ {
+                test: /\.html$/,
+                // html中的img标签
+                use: ["html-withimg-loader"]
+            }]
+    }
+ 
+```
+## 5.打包图片，合成sprite图（雪碧图）
 [参考教程](https://blog.csdn.net/luchuanqi67/article/details/82502009)
 
-## 5.webpack之清除dist目录
+## 6.webpack之清除dist目录
 一、插件安装
 ```
 npm install clean-webpack-plugin --save-dev
@@ -47,7 +74,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 plugins.push(new CleanWebpackPlugin(['dist']));
 ```
 
-## 5.webpack打包提取css到独立文件
+## 7.webpack打包提取css到独立文件
 一、插件安装
 ```
 npm i extract-text-webpack-plugin -D
