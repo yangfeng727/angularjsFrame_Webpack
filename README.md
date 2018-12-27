@@ -115,7 +115,7 @@ module:{
 //这样我们就可以将css的代码都取出来放在css/index.css里面了，同时插件能自动添加index.css的引入到html的头部
 ```
 ## 8.提取公共js模块和第三方框架，jq、angularjs等等
-为什么要提取公共代码，简单来说，就是减少代码冗余，提高加载速度。和之前的webpack配置不一样：
+为什么要提取公共代码，简单来说，就是减少代码冗余，提高加载速度。和之前的webpack配置不一样：[原文](https://blog.csdn.net/sinat_17775997/article/details/80816363)
 ```
 //之前配置
 // new webpack.optimize.SplitChunksPlugin({
