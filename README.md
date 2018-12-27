@@ -114,3 +114,33 @@ module:{
 // 在plugins只是new了一个插件实例，loader部分的fallback就是将style-loader的输出接口接到index.css上。
 //这样我们就可以将css的代码都取出来放在css/index.css里面了，同时插件能自动添加index.css的引入到html的头部
 ```
+## 8.提取公共js模块和第三方框架，jq、angularjs等等
+为什么要提取公共代码，简单来说，就是减少代码冗余，提高加载速度。和之前的webpack配置不一样：
+```
+//之前配置
+// new webpack.optimize.SplitChunksPlugin({
+//     name: 'common', // 如果还要提取公共代码,在新建一个实例
+//     minChunks: 2, //重复两次之后就提取出来
+//     chunks: ['index', 'a'] // 指定提取范围
+// }),
+//现在配置
+optimization: {
+    splitChunks: {
+        cacheGroups: {
+            commons: {  // 抽离自己写的公共代码
+                chunks: "initial",
+                name: "common", // 打包后的文件名，任意命名
+                minChunks: 2,//最小引用2次
+                minSize: 0 // 只要超出0字节就生成一个新包
+            },
+            vendor: {   // 抽离第三方插件
+                test: /node_modules/,   // 指定是node_modules下的第三方包
+                chunks: 'initial',
+                name: 'vendor',  // 打包后的文件名，任意命名
+                // 设置优先级，防止和自定义的公共代码提取时被覆盖，不进行打包
+                priority: 10
+            },
+        }
+    }
+},
+```
