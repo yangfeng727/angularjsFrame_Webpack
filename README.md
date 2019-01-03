@@ -145,6 +145,28 @@ optimization: {
 },
 ```
 ## 9.webpack 使用环境变量 [参考教程](https://www.webpackjs.com/guides/environment-variables/)
+要理解 process.env.NODE_ENV 就必须要了解 process，process 是 node 的全局变量，并且 process 有 env 这个属性，但是没有 NODE_ENV 这个属性。
+```
+package.json
+
+//方法一：
+...
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --env.NODE_ENV=local --progress --color",   // 官网的设置方法，webpack.config.js里面想要使用得将module.exports 转换成一个函数
+    "server": "webpack-dev-server --open"
+  },
+  
+//方法二：
+...
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "set NODE_ENV=local&&webpack  --progress --color",   // 设置全局NODE_ENV，后面可以使用process.env.NODE_ENV拿到变量
+    "server": "webpack-dev-server --open"
+  },
+  
+```
+
 要在开发和生产构建之间，消除 webpack.config.js 的差异，你可能需要环境变量。webpack 命令行环境配置中，通过设置 --env 可以使你根据需要，传入尽可能多的环境变量。在 webpack.config.js 文件中可以访问到这些环境变量。
 ```
 webpack --env.NODE_ENV=local --env.production --progress
