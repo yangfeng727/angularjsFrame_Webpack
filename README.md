@@ -144,3 +144,26 @@ optimization: {
     }
 },
 ```
+## 9.webpack 使用环境变量 [参考教程](https://www.webpackjs.com/guides/environment-variables/)
+要在开发和生产构建之间，消除 webpack.config.js 的差异，你可能需要环境变量。webpack 命令行环境配置中，通过设置 --env 可以使你根据需要，传入尽可能多的环境变量。在 webpack.config.js 文件中可以访问到这些环境变量。
+```
+webpack --env.NODE_ENV=local --env.production --progress
+```
+然而，你必须对 webpack 配置进行一处修改。通常，module.exports 指向配置对象。要使用 env 变量，你必须将 module.exports 转换成一个函数：
+
+webpack.config.js
+```
+module.exports = env => {
+  // Use env.<YOUR VARIABLE> here:
+  console.log('NODE_ENV: ', env.NODE_ENV) // 'local'
+  console.log('Production: ', env.production) // true
+
+  return {
+    entry: './src/index.js',
+    output: {
+      filename: 'bundle.js',
+      path: path.resolve(__dirname, 'dist')
+    }
+  }
+}
+```
