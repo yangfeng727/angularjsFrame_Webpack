@@ -3,8 +3,8 @@
 
 # npm --save-dev --save 的区别
 [参考教程](https://blog.csdn.net/juzipchy/article/details/65653683)  
-devDependencies是开发时的依赖。比如 我们安装 js的压缩包gulp-uglify插件  --save  
-dependencies 下的模块，则是我们发布后还需要依赖的模块，譬如像jQuery库或者Angular框架类似的，我们在开发完后后肯定还要依赖它们，否则就运行不了。--save-dev  
+devDependencies是开发时的依赖。比如 我们安装 js的压缩包gulp-uglify插件  --save-dev  
+dependencies 下的模块，则是我们发布后还需要依赖的模块，譬如像jQuery库或者Angular框架类似的，我们在开发完后后肯定还要依赖它们，否则就运行不了。--save
 # 安装问题-test目录
 ## 1.打包css，es6语法报错，最后发现是webpack4 Cannot find module '@babel/core'  
 原因"babel-loader": "^8.0.0" 版本问题。  
