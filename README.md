@@ -192,7 +192,7 @@ module.exports = env => {
 ## 10.babel学习
 在项目中看到package.json这样写,先npm run build打包到build,然后npm publish将项目提交到私服，才开始重视babel起来(之前认为就是解析es6语法，不知道还可以直接用来打包，不用配置在lodaer里面也行？)  
 
-###1.命令行转码babel-cli [可以参考阮一峰的教程](http://www.ruanyifeng.com/blog/2016/01/babel.html)
+### 1.命令行转码babel-cli [可以参考阮一峰的教程](http://www.ruanyifeng.com/blog/2016/01/babel.html)
 ```
 package.json文件内容:
   ....
