@@ -189,3 +189,39 @@ module.exports = env => {
   }
 }
 ```
+## 10.babel学习
+在项目中看到package.json这样写,先npm run build打包到build,然后npm publish将项目提交到私服，才开始重视babel起来(之前认为就是解析es6语法，不知道还可以直接用来打包，不用配置在lodaer里面也行？)  
+
+命令行转码babel-cli  
+```
+package.json文件内容:
+  ....
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d build && bluesdk-vue-copy"
+  },
+  ....
+  
+  //  babel src -d build 是babel src --out-dir build的缩写【代码意思为使用babel将src目录下的文件打包输出到build目录】 --out-dir 或 -d 参数指定输出目录
+
+
+
+//babel基本语法如下：
+# 转码结果输出到标准输出
+$ babel example.js
+
+# 转码结果写入一个文件
+# --out-file 或 -o 参数指定输出文件
+$ babel example.js --out-file compiled.js
+# 或者
+$ babel example.js -o compiled.js
+
+# 整个目录转码
+# --out-dir 或 -d 参数指定输出目录
+$ babel src --out-dir lib
+# 或者
+$ babel src -d lib
+
+# -s 参数生成source map文件
+$ babel src -d lib -s
+```
